@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/flogea/todo-practice#readme",
   "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
@@ -31,6 +35,9 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.63.3"
   }
 }
