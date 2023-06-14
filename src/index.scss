@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100;0,200;0,400;0,600;0,800;1,400&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Bebas Neue';
 }
 
 body {
@@ -30,6 +33,14 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Bebas Neue';
+  }
+
+  p {
+    margin: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Raleway';
   }
 }
 
