@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { render } from 'react-dom';
 
-import App from './components/App.jsx';
-import './i18n.js';
+import App from './components/App';
+import './i18n';
 
 import './index.scss';
 

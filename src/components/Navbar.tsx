@@ -1,7 +1,7 @@
 import React from 'react';
 
-import DarkModeToggler from './DarkModeToggler.jsx';
-import LangButton from './langButton.jsx';
+import DarkModeToggler from './DarkModeToggler';
+import LangButton from './LangButton';
 // import { Context } from '../Context';
 
 import '../index.scss';

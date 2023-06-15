@@ -4,13 +4,17 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: ['@babel/polyfill', './src/index.jsx'],
+  entry: ['@babel/polyfill', './src/index.ts'],
+  devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
   },
   devServer: {
     port: 3000,
+  },
+  resolve: {
+    extensions: ['.ts', '.js', '.tsx', '.jsx'],
   },
   plugins: [new HTMLWebpackPlugin({ template: './src/index.html' }), new CleanWebpackPlugin()],
   module: {
@@ -41,6 +45,26 @@ module.exports = {
           options: {
             presets: ['@babel/preset-react', '@babel/preset-env'],
           },
+        },
+      },
+      {
+        test: /\.ts?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader',
+          // options: {
+          //   presets: ['@babel/preset-typescript'],
+          // },
+        },
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader',
+          // options: {
+          //   presets: ['@babel/preset-typescript'],
+          // },
         },
       },
     ],

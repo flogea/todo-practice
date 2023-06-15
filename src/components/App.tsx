@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Navbar from './Navbar.jsx';
-import { Context } from '../Context.js';
+import Navbar from './Navbar';
+import { Context } from '../Context';
 
 import '../index.scss';
 
