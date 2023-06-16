@@ -1,13 +1,26 @@
 const path = require('path');
+const env = require('dotenv');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const BuildConfig = {
   mode: 'development',
-  entry: ['@babel/polyfill', './src/index.ts'],
+  // isDev,
+  port: env.PORT || 3000,
+  path: {
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
+    dist: path.resolve(__dirname, 'dist'),
+    html: path.resolve(__dirname, 'public', 'index.html'),
+    src: path.resolve(__dirname, 'src'),
+  },
+};
+
+module.exports = {
+  mode: BuildConfig.mode,
+  entry: ['@babel/polyfill', BuildConfig.path.entry],
   devtool: 'inline-source-map',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: BuildConfig.path.dist,
     filename: '[name].[hash].js',
   },
   devServer: {
@@ -16,7 +29,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.tsx', '.jsx'],
   },
-  plugins: [new HTMLWebpackPlugin({ template: './src/index.html' }), new CleanWebpackPlugin()],
+  plugins: [new HTMLWebpackPlugin({ template: BuildConfig.path.html }), new CleanWebpackPlugin()],
   module: {
     rules: [
       {
