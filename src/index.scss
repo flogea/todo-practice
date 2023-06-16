@@ -68,7 +68,7 @@ body {
     height: 30vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     align-content: end;
@@ -76,18 +76,20 @@ body {
 
     input {
       width: 55%;
+      max-width: 350px;
       height: 40px;
       border: 2px solid white;
       outline: none;
       border-radius: 50px;
-      // margin: 0 20px;
+      margin: auto;
       font-size: 20px;
       padding: 20px 15px;
       background: transparent;
     }
 
     button {
-      width: 25%;
+      width: 30%;
+      max-width: 200px;
       height: 42px;
       background: #bdfff9;
       border: 2px solid #bdfff9;
@@ -99,6 +101,7 @@ body {
       // color: white;
       font-family: 'Raleway';
       transition: all 0.3s ease;
+      padding: 0 5px;
 
       &:hover {
         transform: scale(1.08);
