@@ -78,7 +78,7 @@ const App: React.FC = () => {
               onKeyDown={handleKeyDown}
               ref={inputRef}
             />
-            <button onClick={addTodo}>{t('add')}</button>
+            <button onClick={addTodo}>{t<string>('add')}</button>
           </div>
           <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
         </div>

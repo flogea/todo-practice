@@ -7,16 +7,21 @@ i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
-  .init({
-    fallbackLng: 'ru',
-    debug: true,
-    detection: {
-      order: ['queryString', 'cookie'],
-      cache: ['cookie'],
+  .init(
+    {
+      fallbackLng: 'ru',
+      debug: true,
+      detection: {
+        order: ['queryString', 'cookie'],
+        caches: ['cookie'],
+      },
+      interpolation: {
+        escapeValue: false,
+      },
     },
-    interpolation: {
-      escapeValue: false,
+    (err, t) => {
+      // callback function
     },
-  });
+  );
 
 export default i18n;
