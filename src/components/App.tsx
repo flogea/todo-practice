@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Context } from '../Context';
+import ThemeContext from '../ThemeContext';
 import { ITodo } from '../types/data';
 
 import { Navbar } from './';
@@ -10,7 +10,7 @@ import { TodoList } from './TodoList';
 import '../index.scss';
 
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = React.useState(false);
+  const [darkMode, setDarkMode] = React.useState<boolean>(false);
   React.useEffect(() => {
     darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
   }, [darkMode]);
@@ -67,7 +67,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Context.Provider value={{ darkMode, setDarkMode }}>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
         <div className={darkMode ? 'container dark' : 'container'}>
           <Navbar />
           <div className="addTodo">
@@ -82,7 +82,7 @@ const App: React.FC = () => {
           </div>
           <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
         </div>
-      </Context.Provider>
+      </ThemeContext.Provider>
     </>
   );
 };

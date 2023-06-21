@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Context } from '../Context';
+import ThemeContext from '../ThemeContext';
 
 function DarkModeToggler() {
-  const { darkMode, setDarkMode } = React.useContext(Context);
+  const { darkMode, setDarkMode } = React.useContext(ThemeContext);
   React.useEffect(() => {
     setDarkMode(Boolean(JSON.parse(localStorage.getItem('darkMode') || '{}')));
   }, []);
