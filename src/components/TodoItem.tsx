@@ -8,7 +8,7 @@ interface ITodoItem extends ITodo {
 }
 
 const TodoItem: React.FC<ITodoItem> = (props) => {
-  const { id, title, complete, removeTodo, checkTodo } = props;
+  const { id, title, isCompleted, removeTodo, checkTodo } = props;
 
   return (
     <div className="todoItem">
@@ -16,7 +16,7 @@ const TodoItem: React.FC<ITodoItem> = (props) => {
         type="checkbox"
         name="todos"
         id=""
-        checked={complete}
+        checked={isCompleted}
         className="completing"
         onChange={() => checkTodo(id)}
       />

@@ -29,7 +29,7 @@ const App: React.FC = () => {
         {
           id: Date.now(),
           title: value,
-          complete: false,
+          isCompleted: false,
         },
       ]);
       setValue('');
@@ -49,7 +49,7 @@ const App: React.FC = () => {
 
         return {
           ...todo,
-          complete: !todo.complete,
+          isCompleted: !todo.isCompleted,
         };
       }),
     );
