@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DarkModeToggler, LangButton } from './';
+import { DarkModeToggler, LangButton } from '..';
 
 import '../index.scss';
 

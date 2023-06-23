@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import ThemeContext from '../ThemeContext';
 import { ITodo } from '../types/data';
 
-import { Navbar } from './';
-import { TodoList } from './TodoList';
+import { Navbar } from '../components';
+import { TodoList } from '../components/entities/TodoList';
 
 import '../index.scss';
 

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { render } from 'react-dom';
 
-import App from './components/App';
+import App from './pages/App';
 import './i18n';
 
 import './index.scss';
