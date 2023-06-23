@@ -1,5 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ThemeContext from '../ThemeContext';
 import { ITodo } from '../types/data';
@@ -65,6 +68,23 @@ const App: React.FC = () => {
     inputRef.current?.focus();
   }, []);
 
+  const ErrorNotify = (err: string) => toast.error(`Error: ${err}`);
+
+  const SuccessNotify = () => toast.success('Success');
+
+  React.useEffect(() => {
+    axios
+      .get('https://64958126b08e17c917923215.mockapi.io/api/v1/todo')
+      .then((res) => {
+        if (res.data) {
+          SuccessNotify();
+        }
+      })
+      .catch((err) => {
+        ErrorNotify(err);
+      });
+  }, []);
+
   return (
     <>
       <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
@@ -82,6 +102,18 @@ const App: React.FC = () => {
           </div>
           <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
         </div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </ThemeContext.Provider>
     </>
   );
