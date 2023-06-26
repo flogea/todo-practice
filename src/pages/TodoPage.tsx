@@ -4,15 +4,19 @@ import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ThemeContext from '../ThemeContext';
+import Context from '../Context';
 import { ITodo } from '../types/data';
 
-import { Navbar } from '../components';
-import { TodoList } from '../components/entities/TodoList';
+import Navbar from '../widgets/Navbar';
+import { TodoList } from '../entities/TodoList';
 
 import '../index.scss';
+import Notification from '../widgets/Notification';
+import NotificationContext from '../context/NotificationContext';
 
-const App: React.FC = () => {
+const TodoPage: React.FC = () => {
+  const { setShowNotification } = React.useContext(NotificationContext);
+
   const [darkMode, setDarkMode] = React.useState<boolean>(false);
   React.useEffect(() => {
     darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
@@ -87,7 +91,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      <Context>
         <div className={darkMode ? 'container dark' : 'container'}>
           <Navbar />
           <div className="addTodo">
@@ -114,9 +118,10 @@ const App: React.FC = () => {
           pauseOnHover
           theme="dark"
         />
-      </ThemeContext.Provider>
+        <Notification />
+      </Context>
     </>
   );
 };
 
-export default App;
+export default TodoPage;

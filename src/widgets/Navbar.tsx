@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { DarkModeToggler, LangButton } from '..';
+import LangButton from './LangButton';
+import DarkModeToggler from './DarkModeToggler';
 
-import '../../index.scss';
+import '../index.scss';
 
 function Navbar() {
   return (

@@ -12,10 +12,6 @@ const BuildConfig = {
   },
 };
 
-// const resolvePath = (dir) => {
-//   return path.join(__dirname, '..', dir);
-// };
-
 const getRules = () => {
   return [
     {

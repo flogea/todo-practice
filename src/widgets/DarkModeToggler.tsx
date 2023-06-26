@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ThemeContext from '../../ThemeContext';
+import ThemeContext from '../context/ThemeContext';
 
 function DarkModeToggler() {
   const { darkMode, setDarkMode } = React.useContext(ThemeContext);
