@@ -2,14 +2,14 @@ import React, { SetStateAction } from 'react';
 
 interface NotificationContext {
   showNotification: boolean;
-  setShowNotification: (value: boolean) => void;
+  NotificationHandler: (type: string, message: string) => void;
   type: 'success' | 'warning' | 'danger' | string;
   message: string;
 }
 
 const NotificationContext = React.createContext<NotificationContext>({
   showNotification: false,
-  setShowNotification: (value: boolean) => {},
+  NotificationHandler: (type: string, message: string) => {},
   type: 'success',
   message: '',
 });

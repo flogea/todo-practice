@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-// import NotificationContext from '../context/NotificationContext';
+import NotificationContext from '../context/NotificationContext';
 
 function Notification() {
-  // const { showNotification, type, message } = useContext(NotificationContext);
+  const { showNotification, type, message } = useContext(NotificationContext);
 
-  return <div>Notification</div>;
+  return showNotification && <div>{message}</div>;
 }
 
 export default Notification;

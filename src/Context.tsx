@@ -22,11 +22,11 @@ const Context = ({ children }: Props) => {
     return () => clearTimeout(time);
   }, [showNotification]);
 
-  // const NotificationHandler = () => {
-  //   setType(type);
-  //   setMessage(message);
-  //   setShowNotification(true);
-  // };
+  const NotificationHandler = (type: string, message: string) => {
+    setType(type);
+    setMessage(message);
+    setShowNotification(true);
+  };
 
   return (
     <>
@@ -34,7 +34,7 @@ const Context = ({ children }: Props) => {
         <NotificationContext.Provider
           value={{
             showNotification,
-            setShowNotification,
+            NotificationHandler,
             type,
             message,
           }}>

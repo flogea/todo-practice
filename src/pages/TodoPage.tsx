@@ -16,8 +16,7 @@ import NotificationContext from '../context/NotificationContext';
 import ThemeContext from '../context/ThemeContext';
 
 const TodoPage: React.FC = () => {
-  const { showNotification, setShowNotification, type, message } =
-    React.useContext(NotificationContext);
+  const { showNotification, NotificationHandler } = React.useContext(NotificationContext);
   const { darkMode } = React.useContext(ThemeContext);
   console.log(darkMode);
 
@@ -76,54 +75,48 @@ const TodoPage: React.FC = () => {
     inputRef.current?.focus();
   }, []);
 
-  const ErrorNotify = (err: string) => toast.error(`Error: ${err}`);
-
-  // const SuccessNotify = () => toast.success('Success');
-
   React.useEffect(() => {
     axios
       .get('https://64958126b08e17c917923215.mockapi.io/api/v1/todo')
       .then((res) => {
         if (res.data) {
-          setShowNotification(true);
+          NotificationHandler('success', 'something string');
         }
       })
       .catch((err) => {
-        ErrorNotify(err);
+        NotificationHandler('danger', `${err.message}`);
       });
   }, []);
 
   return (
     <>
-      <Context>
-        <div className={darkMode ? 'container dark' : 'container'}>
-          <Navbar />
-          <div className="addTodo">
-            <input
-              type="text"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              ref={inputRef}
-            />
-            <button onClick={addTodo}>{t<string>('add')}</button>
-          </div>
-          <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
-          {showNotification && <Notification />}
+      <div className={darkMode ? 'container dark' : 'container'}>
+        <Navbar />
+        <div className="addTodo">
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            ref={inputRef}
+          />
+          <button onClick={addTodo}>{t<string>('add')}</button>
         </div>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-      </Context>
+        <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
+        {showNotification && <Notification />}
+      </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 };
