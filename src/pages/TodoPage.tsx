@@ -1,17 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Context from '../Context';
 import { ITodo } from '../types/data';
 
 import Navbar from '../widgets/Navbar';
 import { TodoList } from '../entities/TodoList';
 
 import '../index.scss';
-import Notification from '../widgets/Notification';
 import NotificationContext from '../context/NotificationContext';
 import ThemeContext from '../context/ThemeContext';
 
@@ -103,20 +100,7 @@ const TodoPage: React.FC = () => {
           <button onClick={addTodo}>{t<string>('add')}</button>
         </div>
         <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
-        {showNotification && <Notification />}
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </>
   );
 };
