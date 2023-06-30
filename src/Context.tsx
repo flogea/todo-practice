@@ -7,12 +7,6 @@ interface Props {
   children?: ReactNode;
 }
 
-interface Args {
-  type: string;
-  message: string;
-  setShowNotification?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 const Context = ({ children }: Props) => {
   const [darkMode, setDarkMode] = React.useState<boolean>(false);
 
@@ -28,19 +22,19 @@ const Context = ({ children }: Props) => {
     return () => clearTimeout(time);
   }, [showNotification]);
 
-  const NotificationHandler = (args: Args) => {
-    setType(args.type);
-    setMessage(args.message);
-    setShowNotification(true);
-  };
+  // const NotificationHandler = () => {
+  //   setType(type);
+  //   setMessage(message);
+  //   setShowNotification(true);
+  // };
 
   return (
     <>
       <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
         <NotificationContext.Provider
           value={{
-            NotificationHandler,
             showNotification,
+            setShowNotification,
             type,
             message,
           }}>

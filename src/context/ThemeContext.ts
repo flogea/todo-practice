@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface ThemeContextType {
+interface ThemeContext {
   darkMode: boolean;
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setDarkMode: (value: boolean) => void;
 }
 
-const ThemeContext = React.createContext<ThemeContextType>({
+const ThemeContext = React.createContext<ThemeContext>({
   darkMode: false,
   setDarkMode: () => {},
 });

@@ -13,11 +13,15 @@ import { TodoList } from '../entities/TodoList';
 import '../index.scss';
 import Notification from '../widgets/Notification';
 import NotificationContext from '../context/NotificationContext';
+import ThemeContext from '../context/ThemeContext';
 
 const TodoPage: React.FC = () => {
-  const { setShowNotification } = React.useContext(NotificationContext);
+  const { showNotification, setShowNotification, type, message } =
+    React.useContext(NotificationContext);
+  const { darkMode } = React.useContext(ThemeContext);
+  console.log(darkMode);
 
-  const [darkMode, setDarkMode] = React.useState<boolean>(false);
+  // const [darkMode, setDarkMode] = React.useState<boolean>(false);
   React.useEffect(() => {
     darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
   }, [darkMode]);
@@ -74,14 +78,14 @@ const TodoPage: React.FC = () => {
 
   const ErrorNotify = (err: string) => toast.error(`Error: ${err}`);
 
-  const SuccessNotify = () => toast.success('Success');
+  // const SuccessNotify = () => toast.success('Success');
 
   React.useEffect(() => {
     axios
       .get('https://64958126b08e17c917923215.mockapi.io/api/v1/todo')
       .then((res) => {
         if (res.data) {
-          SuccessNotify();
+          setShowNotification(true);
         }
       })
       .catch((err) => {
@@ -105,6 +109,7 @@ const TodoPage: React.FC = () => {
             <button onClick={addTodo}>{t<string>('add')}</button>
           </div>
           <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
+          {showNotification && <Notification />}
         </div>
         <ToastContainer
           position="bottom-right"
@@ -118,7 +123,6 @@ const TodoPage: React.FC = () => {
           pauseOnHover
           theme="dark"
         />
-        <Notification />
       </Context>
     </>
   );

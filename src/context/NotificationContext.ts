@@ -1,19 +1,17 @@
 import React, { SetStateAction } from 'react';
 
-interface NotificationContextType {
-  NotificationHandler: Object;
+interface NotificationContext {
   showNotification: boolean;
-  type: string;
+  setShowNotification: (value: boolean) => void;
+  type: 'success' | 'warning' | 'danger' | string;
   message: string;
-  setShowNotification?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const NotificationContext = React.createContext<NotificationContextType>({
-  NotificationHandler: {},
+const NotificationContext = React.createContext<NotificationContext>({
   showNotification: false,
-  type: '',
+  setShowNotification: (value: boolean) => {},
+  type: 'success',
   message: '',
-  setShowNotification: () => {},
 });
 
 export default NotificationContext;
