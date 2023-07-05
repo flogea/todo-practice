@@ -18,5 +18,5 @@
     "module": "es6",
     "sourceMap": true
   },
-  "include": ["src"]
+  "include": ["src", "context"]
 }

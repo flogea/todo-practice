@@ -7,7 +7,7 @@ interface ThemeContext {
 
 const ThemeContext = React.createContext<ThemeContext>({
   darkMode: false,
-  setDarkMode: () => {},
+  setDarkMode: (darkMode: boolean) => {},
 });
 
 export default ThemeContext;
