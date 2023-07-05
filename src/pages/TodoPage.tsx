@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { observer } from 'mobx-react';
+import todoStore from '../store/todoStore';
 
 import { ITodo } from '../types/data';
 
@@ -11,7 +13,7 @@ import '../index.scss';
 import NotificationContext from '../context/NotificationContext';
 import ThemeContext from '../context/ThemeContext';
 
-const TodoPage: React.FC = () => {
+const TodoPage: React.FC = observer(() => {
   const { showNotification, NotificationHandler } = React.useContext(NotificationContext);
   const { darkMode } = React.useContext(ThemeContext);
   console.log(darkMode);
@@ -76,7 +78,17 @@ const TodoPage: React.FC = () => {
       .get('https://64958126b08e17c917923215.mockapi.io/api/v1/todo')
       .then((res) => {
         if (res.data) {
+          console.log(res.data);
           NotificationHandler('success', 'something string');
+
+          setTodoList(
+            res.data.map((todo) => {
+              return { ...todo, id: todo.id, title: todo.todo, isCompleted: false };
+            }),
+          );
+
+          // const mystore = new todoStore();
+          todoStore.setTodos(res.data);
         }
       })
       .catch((err) => {
@@ -97,11 +109,13 @@ const TodoPage: React.FC = () => {
             ref={inputRef}
           />
           <button onClick={addTodo}>{t<string>('add')}</button>
+          <button onClick={() => setTodoList(todoStore.sortedTodoAsk)}>ask</button>
+          <button onClick={() => setTodoList(todoStore.sortedTodoDesc)}>desc</button>
         </div>
         <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
       </div>
     </>
   );
-};
+});
 
 export default TodoPage;
