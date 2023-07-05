@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { ITodo } from '../types/data';
 
