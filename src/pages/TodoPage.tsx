@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react';
-import todoStore from '../store/todoStore';
 
 import { ITodo } from '../types/data';
 
@@ -12,9 +11,11 @@ import { TodoList } from '../entities/TodoList';
 import '../index.scss';
 import NotificationContext from '../context/NotificationContext';
 import ThemeContext from '../context/ThemeContext';
+import TodoServiceImpl from '../service/TodoServiceImpl';
+import TodoStoreImpl from '../store/TodoStoreImpl';
 
 const TodoPage: React.FC = observer(() => {
-  const { showNotification, NotificationHandler } = React.useContext(NotificationContext);
+  const { NotificationHandler } = React.useContext(NotificationContext);
   const { darkMode } = React.useContext(ThemeContext);
   console.log(darkMode);
 
@@ -88,13 +89,17 @@ const TodoPage: React.FC = observer(() => {
           );
 
           // const mystore = new todoStore();
-          todoStore.setTodos(res.data);
+
+          const TodoService = new TodoServiceImpl(res.data);
+          TodoService.setTodos(res.data);
         }
       })
       .catch((err) => {
         NotificationHandler('danger', `${err.message}`);
       });
   }, []);
+
+  const TodoStore = new TodoStoreImpl();
 
   return (
     <>
@@ -109,8 +114,8 @@ const TodoPage: React.FC = observer(() => {
             ref={inputRef}
           />
           <button onClick={addTodo}>{t<string>('add')}</button>
-          <button onClick={() => setTodoList(todoStore.sortedTodoAsk)}>ask</button>
-          <button onClick={() => setTodoList(todoStore.sortedTodoDesc)}>desc</button>
+          <button onClick={() => setTodoList(TodoStore.sortedTodoDesc)}>ask</button>
+          <button onClick={() => setTodoList(TodoStore.sortedTodoDesc)}>desc</button>
         </div>
         <TodoList items={todoList} removeTodo={removeTodo} checkTodo={checkTodo} />
       </div>
