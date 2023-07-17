@@ -11,4 +11,23 @@ export default class TodoServiceImpl implements ITodoService {
       this.store.todo = todos;
     });
   };
+
+  checkTodo = (id: number): void => {
+    this.setTodos(
+      this.store.todo.map((todo) => {
+        if (todo.id !== id) {
+          return todo;
+        }
+
+        return {
+          ...todo,
+          isCompleted: !todo.isCompleted,
+        };
+      }),
+    );
+  };
+
+  removeTodo = (id: number): void => {
+    this.setTodos(this.store.todo.filter((todo) => todo.id !== id));
+  };
 }

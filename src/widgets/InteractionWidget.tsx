@@ -3,18 +3,19 @@ import Input from '../uiKit/Input';
 import { ITodo } from '../types/data';
 import { useTranslation } from 'react-i18next';
 import TodoStoreImpl from '../store/TodoStoreImpl';
+import TodoServiceImpl from '../service/TodoServiceImpl';
 
 function InteractionWidget() {
   const { t, i18n } = useTranslation();
-  const [todoList, setTodoList] = React.useState<ITodo[]>([]);
   const [value, setValue] = React.useState<string>('');
 
-  const TodoStore = new TodoStoreImpl();
+  const todoStore = new TodoStoreImpl();
+  const todoService = new TodoServiceImpl(todoStore);
 
   const addTodo = () => {
     if (value) {
-      setTodoList([
-        ...todoList,
+      todoService.setTodos([
+        ...todoStore.todo,
         {
           id: Date.now(),
           title: value,
@@ -29,8 +30,8 @@ function InteractionWidget() {
     <>
       <Input value={value} setValue={setValue} addTodo={addTodo} />
       <button onClick={addTodo}>{t<string>('add')}</button>
-      <button onClick={() => setTodoList(TodoStore.sortedTodoDesc)}>ask</button>
-      <button onClick={() => setTodoList(TodoStore.sortedTodoDesc)}>desc</button>
+      <button onClick={() => todoService.setTodos(todoStore.sortedTodoDesc)}>ask</button>
+      <button onClick={() => todoService.setTodos(todoStore.sortedTodoDesc)}>desc</button>
     </>
   );
 }

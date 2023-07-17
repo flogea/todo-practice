@@ -1,20 +1,18 @@
 import React from 'react';
-import { ITodo } from '../types/data';
 import { TodoItem } from './TodoItem';
+import TodoStoreImpl from '../store/TodoStoreImpl';
 
-interface ITodoList {
-  items: ITodo[];
-  removeTodo: (id: number) => void;
-  checkTodo: (id: number) => void;
-}
+const TodoList: React.FC = () => {
+  const todoStore = new TodoStoreImpl();
 
-const TodoList: React.FC<ITodoList> = (props) => {
-  const { removeTodo, checkTodo, items } = props;
+  React.useEffect(() => {
+    console.log(todoStore);
+  }, [todoStore]);
 
   return (
     <div className="todoList">
-      {items.map((todo) => (
-        <TodoItem key={todo.id} removeTodo={removeTodo} checkTodo={checkTodo} {...todo} />
+      {todoStore.todo.map((todo) => (
+        <TodoItem id={0} title={''} isCompleted={false} key={todo} {...todoStore.todo} />
       ))}
     </div>
   );
