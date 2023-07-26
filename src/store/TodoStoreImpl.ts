@@ -8,7 +8,15 @@ export default class TodoStoreImpl implements ITodoStore {
 
   todo = [{ id: 0, title: '', isCompleted: false }];
 
+  get sortedTodoAsc() {
+    return this.todo.slice().sort((a, b) => {
+      return a.id - b.id;
+    });
+  }
+
   get sortedTodoDesc() {
-    return this.todo.slice().sort();
+    return this.todo.slice().sort((a, b) => {
+      return b.id - a.id;
+    });
   }
 }

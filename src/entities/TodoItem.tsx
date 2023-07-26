@@ -5,6 +5,7 @@ import todoService from '../service/Todoservice';
 
 const TodoItem: React.FC<ITodo> = (props) => {
   const { id, title, isCompleted } = props;
+  console.log(id);
 
   return (
     <div className="todoItem">

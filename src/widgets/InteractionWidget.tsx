@@ -27,8 +27,12 @@ function InteractionWidget() {
     <>
       <Input value={value} setValue={setValue} addTodo={addTodo} />
       <button onClick={addTodo}>{t<string>('add')}</button>
-      <button onClick={() => todoService.setTodos(todoStore.sortedTodoDesc)}>ask</button>
-      <button onClick={() => todoService.setTodos(todoStore.sortedTodoDesc)}>desc</button>
+      <button className="sort" onClick={() => todoService.setTodos(todoStore.sortedTodoAsc)}>
+        &uarr;
+      </button>
+      <button className="sort" onClick={() => todoService.setTodos(todoStore.sortedTodoDesc)}>
+        &darr;
+      </button>
     </>
   );
 }
