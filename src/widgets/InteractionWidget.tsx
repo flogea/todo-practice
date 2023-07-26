@@ -2,15 +2,12 @@ import React from 'react';
 import Input from '../uiKit/Input';
 import { ITodo } from '../types/data';
 import { useTranslation } from 'react-i18next';
-import TodoStoreImpl from '../store/TodoStoreImpl';
-import TodoServiceImpl from '../service/TodoServiceImpl';
+import todoService from '../service/Todoservice';
+import todoStore from '../store/TodoStore';
 
 function InteractionWidget() {
   const { t, i18n } = useTranslation();
   const [value, setValue] = React.useState<string>('');
-
-  const todoStore = new TodoStoreImpl();
-  const todoService = new TodoServiceImpl(todoStore);
 
   const addTodo = () => {
     if (value) {

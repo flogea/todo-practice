@@ -1,14 +1,10 @@
 import React from 'react';
 
 import { ITodo } from '../types/data';
-import TodoStoreImpl from '../store/TodoStoreImpl';
-import TodoServiceImpl from '../service/TodoServiceImpl';
+import todoService from '../service/Todoservice';
 
 const TodoItem: React.FC<ITodo> = (props) => {
   const { id, title, isCompleted } = props;
-
-  const todoStore = new TodoStoreImpl();
-  const todoService = new TodoServiceImpl(todoStore);
 
   return (
     <div className="todoItem">

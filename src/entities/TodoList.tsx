@@ -1,18 +1,16 @@
 import React from 'react';
 import { TodoItem } from './TodoItem';
-import TodoStoreImpl from '../store/TodoStoreImpl';
+import todoStore from '../store/TodoStore';
 
 const TodoList: React.FC = () => {
-  const todoStore = new TodoStoreImpl();
-
   React.useEffect(() => {
     console.log(todoStore);
   }, [todoStore]);
 
   return (
     <div className="todoList">
-      {todoStore.todo.map((todo) => (
-        <TodoItem id={0} title={''} isCompleted={false} key={todo} {...todoStore.todo} />
+      {todoStore.todo.map((todo, index) => (
+        <TodoItem key={index} {...todo} />
       ))}
     </div>
   );

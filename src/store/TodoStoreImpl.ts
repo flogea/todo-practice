@@ -6,7 +6,7 @@ export default class TodoStoreImpl implements ITodoStore {
     makeAutoObservable(this);
   }
 
-  todo = [];
+  todo = [{ id: 0, title: '', isCompleted: false }];
 
   get sortedTodoDesc() {
     return this.todo.slice().sort();

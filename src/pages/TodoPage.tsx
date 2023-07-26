@@ -12,6 +12,9 @@ import TodoServiceImpl from '../service/TodoServiceImpl';
 import { TodoList } from '../entities/TodoList';
 import TodoStoreImpl from '../store/TodoStoreImpl';
 
+import todoService from '../service/Todoservice';
+import todoStore from '../store/TodoStore';
+
 enum Status {
   danger = 'danger',
   success = 'success',
@@ -27,20 +30,20 @@ const TodoPage: React.FC = observer(() => {
     darkMode ? document.body.classList.add('dark') : document.body.classList.remove('dark');
   }, [darkMode]);
 
-  const todoStore = new TodoStoreImpl();
-  const todoService = new TodoServiceImpl(todoStore);
+  // const todoStore = new TodoStoreImpl();
+  // const todoService = new TodoServiceImpl(todoStore);
 
   React.useEffect(() => {
     axios
       .get('https://64958126b08e17c917923215.mockapi.io/api/v1/todo')
       .then((res) => {
         if (res.data) {
-          NotificationHandler(Status.success, 'something string');
           todoService.setTodos(
             res.data.map((todo) => {
               return { ...todo, id: todo.id, title: todo.todo, isCompleted: false };
             }),
           );
+          NotificationHandler(Status.success, 'something string');
         }
       })
       .catch((err) => {
